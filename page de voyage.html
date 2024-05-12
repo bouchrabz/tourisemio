@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voyages - Découvrez le Monde</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        .sections {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px; /* Espace entre les sections */
+        }
+        .section {
+            flex: 1; /* Pour que les sections aient la même taille */
+            padding: 30px;
+            background-color: #e8f4ff;
+            border-radius: 10px;
+            transition: background-color 0.3s;
+        }
+        .section:hover {
+            background-color: #d0eaff;
+        }
+        .section h2 {
+            font-size: 28px;
+            color: #0066cc;
+            margin-bottom: 20px;
+        }
+        .section img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .section label {
+            display: block;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        .section select, .section input[type="date"], .section button {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .section button {
+            padding: 12px 20px;
+            border: none;
+            background-color: #0066cc;
+            color: blanc;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .section button:hover {
+            background-color: #005bb5;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            background-color: #f0f0f0;
+            color: #333;
+            border-top: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="sections">
+        <!-- Section des voyages touristiques -->
+        <div class="section" id="tourist-section">
+            <h2>Voyages touristiques</h2>
+            <img src="téléchargement (3).jpg" alt="Voyage touristique" />
+            <label>Pays à visiter :</label>
+            <select>
+                <option value="france">France</option>
+                <option value="tokyo">Tokyo</option>
+                <option value="italy">Italie</option>
+            </select>
+            <label>Date du voyage :</label>
+            <input type="date" />
+            <button onclick="redirectToPage('page de proposition.html')">Réservez maintenant</button>
+        </div>
+
+        <!-- Section des voyages d'affaires -->
+        <div class="section" id="business-section">
+            <h2>Voyages d'affaires</h2>
+            <img src="Businessman Going On Business Trip Arriving At Airport, Back View.jpg" alt="Voyage d'affaires" />
+            <label>Pays à visiter :</label>
+            <select>
+                <option value="london">Londres</option>
+                <option value="new_york">New York</option>
+                <option value="singapore">Singapour</option>
+            </select>
+            <label>Date du voyage :</label>
+            <input type="date" />
+            <button onclick="redirectToPage('page de proposition2.html')">Réservez maintenant</button>
+        </div>
+    </div>
+</div>
+
+<div class="footer">
+    &copy; 2024 Voyages - Découvrez le Monde. Tous droits réservés.
+</div>
+
+<script>
+function redirectToPage(url) {
+    window.location.href = url;
+}
+
+function disableSection(sectionId) {
+    const section = document.getElementById(sectionId);
+    const inputs = section.querySelectorAll('select, input, button');
+
+    inputs.forEach(input => {
+        input.disabled = true;  // Désactiver tous les éléments
+    });
+
+    section.style.opacity = 0.5;  // Rendre visuellement désactivé
+}
+
+// Gestionnaire d'événement pour désactiver la section opposée lorsqu'on clique sur une section
+document.getElementById('tourist-section').addEventListener('click', function() {
+    disableSection('business-section');  // Désactiver la section des voyages d'affaires
+});
+
+document.getElementById('business-section').addEventListener('click', function() {
+    disableSection('tourist-section');  // Désactiver la section des voyages touristiques
+});
+</script>
+
+</body>
+</html>

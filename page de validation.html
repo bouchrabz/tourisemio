@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulaire d'inscription</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f7f7f7;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .form-group button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .form-group button:hover {
+            background-color: #388E3C;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Formulaire de validation</h2>
+        <p></p>
+        <form action="conect.php" method="post"> <!-- تأكد من أن مسار ملف PHP صحيح -->
+            <div class="form-group">
+                <label for="prenom">Prénom :</label>
+                <input type="text" id="Prenom" name="prenom" required>
+            </div>
+            <div class="form-group">
+                <label for="nom">Nom :</label>
+                <input type="text" id="nom" name="nom" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email :</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="numerotl">Numérotl :</label>
+                <input type="tel" id="numerotl" name="numerotl" required>
+            </div>
+            <div class="form-group">
+                <label for="typevoyage">Type de voyage :</label>
+                <select id="typevoyage" name="typevoyage" required>
+                    <option value="Touristique">Touristique</option>
+                    <option value="Professionnel">Professionnel</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="destination">Destination :</label>
+                <select id="destination" name="destination" required>
+                    <option value="France">France</option>
+                    <option  value="Tokyo" >Tokyo</option>
+                    <option value="Italie"> Italie</option>
+                    <option value="londres">londres</option>
+                    <option value="New York">New York</option>
+                    <option value="singapour">singapour</option>
+                    </select>
+            </div>
+            <div class="form-group">
+                <label for="hotel">Hôtel :</label>
+                <select id="hotel" name="hotel" required>
+                    <option value="Hôtel Eiffel" >Hôtel Eiffel</option>
+                    <option value="Hôtel Le Louvre" >Hôtel Le Louvre</option>
+                    <option value="Hôtel Tokyo Skytree" >Hôtel Tokyo Skytree</option>
+                    <option value="Hôtel Shibuya Excelsior" >Hôtel Shibuya Excelsior</option>
+                    <option value="Hôtel Venice Palace" >Hôtel Venice Palace</option>
+                    <option value="Hôtel Rome Grand" >Hôtel Rome Grand</option>
+                    <option value="Grand Hyatt New York" >Grand Hyatt New York</option>
+                    <option value="Manhattan Place Hotel" >Manhattan Place Hotel</option>
+                    <option value="The Savoy" >The Savoy</option>
+                    <option value="The Langham London" >The Langham London</option>
+                    <option value="Marina Bay Sands">Marina Bay Sands</option>
+                    <option value="The Fullerton Hotel Singapore">The Fullerton Hotel Singapore</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="date">Date :</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Envoyer</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

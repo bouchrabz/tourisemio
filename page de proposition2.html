@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hôtels d'Affaires</title>
+    <style>
+  /* Styles pour la page web */
+  body {
+            font-family: Arial, sans-serif;  /* Police de caractères */
+            background-color:white;      /* Couleur de fond */
+            margin: 0;                      /* Sans marge */
+            padding: 0;                     /* Sans padding */
+        }
+
+        h1 {
+            text-align: center;             /* Centrer le texte */
+            color: #333;                    /* Couleur du texte */
+        }
+
+  .center {
+            text-align: center; /* محاذاة النص في الوسط */
+        }
+        #destination-label {
+            display: block;                /* Afficher comme bloc */
+            text-align: center;            /* Centrer le texte */
+            margin: 20px;                   /* Espace autour du label */
+            font-size: 16px;                /* Taille de la police */
+            color: #555;                    /* Couleur du texte */
+        }
+
+        #destination {
+            display: block;                /* Afficher comme bloc */
+            margin: 0 auto;                /* Centrer horizontalement */
+            padding: 10px;                  /* Ajouter du padding */
+            font-size: 16px;                /* Taille de la police */
+        }
+
+        #hotels {
+            display: grid;                  /* Utiliser une grille */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Colonnes adaptatives */
+            gap: 20px;                       /* Espace entre les éléments */
+            padding: 20px;                   /* Ajouter du padding */
+        }
+
+        .hotel {
+            background-color:white;         /* Couleur de fond des hôtels */
+            border-radius: 5px;             /* Coins arrondis */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);  /* Ombre légère */
+            padding: 10px;                   /* Padding interne */
+            text-align: center;              /* Centrer le contenu */
+        }
+
+        .hotel img {
+            width: 100%;                     /* Largeur complète */
+            height: 200px;                    /* Hauteur fixe */
+            object-fit: contain;               /* Maintenir les proportions */
+            border-top-left-radius: 5px;     /* Coins arrondis en haut à gauche */
+            border-top-right-radius: 5px;    /* Coins arrondis en haut à droite */
+        }
+
+        .hotel h2 {
+            margin-top: 10px;                /* Espace en haut */
+            margin-bottom: 5px;              /* Espace en bas */
+            color: #333;                     /* Couleur du texte */
+        }
+
+        .hotel p {
+            color: #666;                      /* Couleur du texte */
+        }
+
+        .select-button {  /* Style pour le bouton "Choisir" */
+            background-color:blue ;           /* Couleur du bouton */
+            color: white;                     /* Couleur du texte */
+            padding: 10px;                     /* Padding autour du bouton */
+            border: aucun;                    /* Sans bordure */
+            border-radius: 5px;               /* Coins arrondis */
+            cursor: pointer;                  /* Curseur main */
+        }
+
+        .select-button:hover {  /* Changer la couleur au survol */
+            background-color: #555;
+        }
+
+        @media (max-width: 600px) {  /* Règles pour écrans plus petits */
+            #hotels {
+                grid-template-columns: 1fr;  /* Une seule colonne */
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Hôtels d'Affaires</h1>
+    <label for="destination">Choisissez une destination :</label>
+    <select id="destination">
+        <option value="ny">New York</option>
+        <option value="london">Londres</option>
+        <option value="singapore">Singapour</option>
+    </select>
+
+    <div id="hotels"></div>
+
+    <script>
+        const hotelsDatabase = {
+            ny: [
+                {
+                    name: 'Grand Hyatt New York',
+                    image: 'Grand Hyatt New York_.jpg',  // تحقق من المسار
+                    price: 250,
+                },
+                {
+                    name: 'Manhattan Place Hotel',
+                    image: 'Luxury Hotels In New York.jpg',  // تحقق من المسار
+                    price: 300,
+                },
+            ],
+            london: [
+                {
+                    name: 'The Savoy',
+                    image: 'Flickr.jpg',  
+                    price: 220,
+                },
+                {
+                    name: 'The Langham, London',
+                    image: 'The 22 Best Spas in London, According to Our UK Editors.jpg',  
+                    price: 270,
+                },
+            ],
+            singapore: [
+                {
+                    name: 'Marina Bay Sands',
+                    image: 'téléchargement (5).jpg',  
+                    price: 260,
+                },
+                {
+                    name: 'The Fullerton Hotel Singapore',
+                    image: 'The Fullerton Hotel Singapore Review - The Travel Temple.jpg',  
+                    price: 310,
+                },
+            ],
+        };
+
+        const hotelsDiv = document.getElementById('hotels');  
+        const destinationSelect = document.getElementById('destination');  
+
+        function loadHotels(destination) {  
+            hotelsDiv.innerHTML = '';  // Effacer le contenu précédent
+
+            if (hotelsDatabase[destination]) {  
+                hotelsDatabase[destination].forEach(hotel => {
+                    const hotelElement = document.createElement('div');
+                    hotelElement.classList.add('hotel');  
+                    hotelElement.innerHTML = `
+                        <h2>${hotel.name}</h2>
+                        <img src="${hotel.image}" alt="${hotel.name}">
+                        <p>Prix: ${hotel.price} USD</p>
+                        <button class="select-button" onclick="selectHotel('${hotel.name}')">Choisir</button>
+                    `;
+                    hotelsDiv.appendChild(hotelElement);  // Ajouter à la page
+                });
+            } else {
+                hotelsDiv.innerHTML = "Aucun hôtel disponible pour cette destination.";
+            }
+        }
+
+        function selectHotel(hotelName) {  
+            alert(`Vous avez choisi l'hôtel: ${hotelName}`);
+        }
+
+        destinationSelect.addEventListener('change', () => {
+            const selectedDestination = destinationSelect.value; 
+            loadHotels(selectedDestination);  
+        });
+
+        loadHotels('ny');  // Charger les hôtels de New York par défaut
+    </script>
+<div class="center">
+    <a href="page de validation.html">Valider</a>
+</div>
+</body>
+</html>
